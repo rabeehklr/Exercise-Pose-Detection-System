@@ -1,0 +1,29 @@
+step1: if exercise == exercise_list[0]: 
+      
+    
+    step1.1:if exercise_states[exercise_list[0]] == 'down' and angle >= start_angle[exercise_list[0]]:
+        feedback = "start moving up"
+        angle=get_updated_angle()
+                   
+            step1.1.1:if angle <= end_angle[exercise_list[0]] and exercise_states[exercise_list[0]] == 'down':  
+                feedback = " rep completed , move down"
+                angle=get_updated_angle()
+                rep_counts[exercise_list[0]] += 1
+                exercise_states[exercise_list[0]] = 'up'
+                goto 1.1.3 else goto step1.1.2
+              
+            step1.1.2:if angle >  end_angle[exercise_list[0]] and angle < start_angle[exercise_list[0]]:  
+                feedback = "continue going up"
+                angle=get_updated_angle()
+                goto step1.1.1
+            
+            step1.1.3:  if  exercise_states[exercise_list[0]] == 'up':  
+                        feedback = " continue move down"
+                        angle=get_updated_angle()
+                        goto step 1.1.4 else goto step 1.1.3
+                        
+            
+            step1.1.4:  if angle >= start_angle[exercise_list[0]] and exercise_states[exercise_list[0]] == 'up': 
+                        exercise_states[exercise_list[0]] = 'down'
+                        angle=get_updated_angle()
+                        goto step1.1
